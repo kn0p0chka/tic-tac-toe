@@ -17,3 +17,9 @@ export type GameConfig = {
   winCombinationLength: number;
   disappearingCellsInpVal: number;
 };
+export type Inputs = {
+  winCombinationLength: string | null;
+  boardSize: string | null;
+  disappearingCellsInpVal: string | null;
+  enableTurnsDisappearing: boolean;
+};
