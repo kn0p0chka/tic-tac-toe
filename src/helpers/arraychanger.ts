@@ -1,3 +1,4 @@
+// TODO: this function is not used anywhere. So you can remove it.
 import { CellState } from "../models/display";
 type NewCellState = {
   pos: {

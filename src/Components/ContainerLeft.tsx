@@ -1,11 +1,15 @@
+// TODO: PLEASE REMOVE ALL UNNEEDED COMMENTS
+
+// TODO: Lets split this component into smaller components.
+// 1) Form component with all buttons (Config OR Settings)
+// 2) component with statuses (GameStatus)
+// 3) component with turns history (TurnsHistory)
+// All these components will be placed in the TicTacToeGame container
+// so there will no longer be a component ContainerLeft.
+
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import {
-  CellState,
-  GameConfig,
-  NewCellState,
-  TurnsRowsState,
-} from "../models/display";
+import { CellState, GameConfig, NewCellState, TurnsRowsState } from "../models/display";
 
 type ContainerLeftProps = {
   winner: CellState;
@@ -176,10 +180,8 @@ function ContainerLeft({
 
           {errors.boardSize && (
             <p className="red">
-              {errors.boardSize?.type === "min" &&
-                "pls type number more than 3"}
-              {errors.boardSize?.type === "max" &&
-                `"pls type number less than ${watchedBoardSize}`}
+              {errors.boardSize?.type === "min" && "pls type number more than 3"}
+              {errors.boardSize?.type === "max" && `"pls type number less than ${watchedBoardSize}`}
             </p>
           )}
         </label>
@@ -196,8 +198,7 @@ function ContainerLeft({
           />
           {errors.winCombinationLength && (
             <p className="red">
-              {errors.winCombinationLength?.type === "min" &&
-                "pls type number more than 3"}
+              {errors.winCombinationLength?.type === "min" && "pls type number more than 3"}
               {errors.winCombinationLength?.type === "max" &&
                 `"pls type number less than ${watchedBoardSize}`}
             </p>
@@ -223,9 +224,7 @@ function ContainerLeft({
           {errors.disappearingCellsInpVal && (
             <p className="red">
               {errors.disappearingCellsInpVal?.type === "min" &&
-                `pls type number more than ${
-                  Number(watchedWinCombinationLength) * 2 - 1
-                }`}
+                `pls type number more than ${Number(watchedWinCombinationLength) * 2 - 1}`}
               {errors.disappearingCellsInpVal?.type === "max" &&
                 `"pls type number less than ${
                   Number(watchedBoardSize) * Number(watchedBoardSize) - 1
@@ -374,9 +373,7 @@ function ContainerLeft({
       </div> */}
 
       {winner && <h3 className="winner">the winner is: {winner} !!</h3>}
-      {!winner && isBoardFilled && (
-        <h3 className="winner">the winner is love</h3>
-      )}
+      {!winner && isBoardFilled && <h3 className="winner">the winner is love</h3>}
 
       <div className="turnsBox">
         {turnsHistory.map((turn, index) => {

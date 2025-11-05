@@ -1,5 +1,5 @@
-import { type } from "os";
 import { CellState } from "./../models/display";
+// TODO: we have the same type in models/display.ts. So you can use it instead of this one.
 type NewCellState = {
   pos: {
     col: number;
@@ -7,11 +7,9 @@ type NewCellState = {
   };
   state: CellState;
 };
-const isWinner = (
-  cells: (NewCellState | null)[],
-  wonCombinationCount: number
-) => {
-  // let count = 0;
+
+// TODO: rename wonCombinationCount to winCombinationLength
+const isWinner = (cells: (NewCellState | null)[], wonCombinationCount: number) => {
   let cellItem: NewCellState["state"] = null;
   let winnerCells: NewCellState[] = [];
   cells.forEach((cell) => {

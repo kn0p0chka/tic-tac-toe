@@ -8,16 +8,15 @@ type CellContainerProps = {
   winCombination: NewCellState[] | null;
   handleCellClick: (colIndex: number, rowIndex: number) => void;
 };
-function CellContainer({
-  cells,
-  config,
-  winCombination,
-  handleCellClick,
-}: CellContainerProps) {
+
+// TODO: rename the component and the file to Table
+function CellContainer({ cells, config, winCombination, handleCellClick }: CellContainerProps) {
   return (
+    // TODO: there are no cont class in the css file. Also the extra div is not needed. So remove it.
     <div className="cont">
       <div className="cellsContainer">
         {cells.map((row, rowIndex) => {
+          // TODO: here should be row.map((...)=>(<Cell ... />)) instead of  <Cell ... />. Another logic move to the Cell component.
           return (
             <Cell
               key={rowIndex}

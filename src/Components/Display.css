@@ -1,3 +1,4 @@
+/* TODO: please review names of the classes and check where they are used. They are not descriptive. */
 /* .cont {
   display: flex;
   flex-direction: column;
@@ -5,6 +6,13 @@
   align-items: center;
   gap: 20px;
 } */
+
+/* TODO: 
+  There are 2 approaches to style the app that you can apply.
+  1. Write all styles in the one file. In our case it could beApp.css file.
+  2. Separate styles by components. So each component will have its own css file.
+  In terms of the size of our app lets use the 1st approach. 
+*/
 .mainCont {
   display: flex;
   align-items: flex-start;
