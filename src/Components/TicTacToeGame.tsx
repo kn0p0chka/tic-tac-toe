@@ -2,8 +2,6 @@ import React, { useMemo, useState } from "react";
 import calcCellsByTurnsHistory from "../helpers/calculateCellsByTurnsHistory";
 import { getWinningCombination } from "../helpers/checkWinner";
 import { GameConfig, TurnsRowsState } from "../models/display";
-
-import "./Display.css";
 import Table from "./Table";
 import Config from "./Config";
 import GameStatus from "./GameStatus";
