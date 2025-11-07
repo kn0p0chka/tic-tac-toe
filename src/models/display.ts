@@ -1,5 +1,4 @@
 export type CellState = "O" | "X" | null;
-export type TurnState = { cellId: number; player: "O" | "X" };
 export type TurnsRowsState = {
   pos: { row: number; col: number };
   player: "O" | "X";

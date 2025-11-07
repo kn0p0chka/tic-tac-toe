@@ -1,49 +1,40 @@
 import React from "react";
 import { GameConfig, NewCellState } from "../models/display";
+
 type CellProps = {
-  row: NewCellState[];
-  rowIndex: number;
+  cell: NewCellState;
   config: GameConfig;
-  winCombination: NewCellState[] | null;
+  isWinningCell: NewCellState[] | null;
   handleCellClick: (colIndex: number, rowIndex: number) => void;
 };
 
-function Cell({
-  row,
-  rowIndex,
-  config,
-  winCombination,
-  handleCellClick,
-}: CellProps) {
-  const handleBoardSize = () => {
-    return 600 / config.boardSize;
+function Cell({ cell, config, isWinningCell, handleCellClick }: CellProps) {
+  const cellSize = 600 / config.boardSize;
+
+  const isHighlighted = () => {
+    const wonCells = isWinningCell?.find(
+      (wonCell) =>
+        wonCell.pos.col === cell.pos.col && wonCell.pos.row === cell.pos.row
+    )
+      ? "highlight"
+      : "";
+
+    return wonCells;
   };
   return (
-    <div className={"row"}>
-      {row.map((cell, colIndex) => {
-        return (
-          <div
-            style={{
-              width: handleBoardSize() + "px",
-              height: handleBoardSize() + "px",
-              fontSize: handleBoardSize() + "px",
-            }}
-            className={`cell ${
-              winCombination?.find(
-                (cell) => cell.pos.col === colIndex && cell.pos.row === rowIndex
-              )
-                ? "highlight"
-                : ""
-            }`}
-            key={colIndex}
-            onClick={() => {
-              handleCellClick(colIndex, rowIndex);
-            }}
-          >
-            {cell.state}
-          </div>
-        );
-      })}
+    <div
+      style={{
+        width: cellSize + "px",
+        height: cellSize + "px",
+        fontSize: cellSize + "px",
+      }}
+      className={`cell ${isHighlighted()}`}
+      key={cell.pos.col}
+      onClick={() => {
+        handleCellClick(cell.pos.col, cell.pos.row);
+      }}
+    >
+      {cell.state}
     </div>
   );
 }

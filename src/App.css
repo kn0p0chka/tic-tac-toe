@@ -9,3 +9,121 @@
   margin: 10px 0;
   font-size: 35px;
 }
+.mainCont {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  gap: 15px;
+}
+.form {
+  display: flex;
+
+  flex-direction: column;
+  gap: 10px;
+  border: 2px solid lightgray;
+  border-radius: 15px;
+  padding: 10px;
+}
+.contLeft {
+  width: 270px;
+}
+.cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.cellsContainer {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid gray;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.cell {
+  width: 200px;
+  height: 200px;
+  color: rgb(77, 8, 8);
+  border: 1px solid gray;
+  font-size: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease-in-out;
+  cursor: pointer;
+}
+.cell.highlight {
+  background-color: #61e06994;
+}
+
+.turnsBox {
+  white-space: pre-line;
+  font-family: monospace;
+}
+.turn {
+  display: block;
+  margin: 4px 0;
+  font-family: monospace;
+  font-size: 15px;
+  white-space: pre;
+  cursor: pointer;
+}
+
+.inp {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  background-color: #f9fafb;
+  transition: all 0.2s ease-in-out;
+  margin: 5px 0;
+  width: 100%;
+}
+.checkBoxLabelText {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.winner {
+  font-size: 25px;
+  text-align: center;
+  margin: 10px;
+}
+
+.btnApply,
+.btnReset,
+.btnRestart {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  background-color: #f9fafb;
+  transition: all 0.4s ease-in-out;
+  margin: 5px 0;
+  width: 100%;
+}
+
+.btnReset:hover {
+  background-color: lightcoral;
+}
+.btnApply:hover {
+  background-color: lightgreen;
+}
+.btnRestart:hover {
+  background-color: lightblue;
+}
+
+.cell:hover {
+  background-color: lightgray;
+}
+.red {
+  color: darkred;
+  font-size: large;
+}

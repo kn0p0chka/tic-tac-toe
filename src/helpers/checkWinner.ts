@@ -1,9 +1,11 @@
 import { getDiagonalBoard1, getDiagonalBoard2 } from "./diagonals";
 import isWinner from "./isWinner";
-import { CellState, NewCellState } from "./../models/display";
-import newCellsMaker from "./arraychanger";
+import { NewCellState } from "./../models/display";
 
-export const checkWinner = (cells: NewCellState[][], boardSize: number) => {
+export const getWinningCombination = (
+  cells: NewCellState[][],
+  boardSize: number
+) => {
   for (let rowIndex = 0; rowIndex < cells[0].length; rowIndex++) {
     const row = cells[rowIndex];
     const winningRow = isWinner(row, boardSize);
@@ -28,5 +30,5 @@ export const checkWinner = (cells: NewCellState[][], boardSize: number) => {
     const winningDia2 = isWinner(diagonal2, boardSize);
     if (winningDia2) return winningDia2;
   }
-  return null; // if there is a winning column
+  return null;
 };

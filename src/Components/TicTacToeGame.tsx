@@ -1,13 +1,16 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import calcCellsByTurnsHistory from "../helpers/calculateCellsByTurnsHistory";
-import { checkWinner } from "../helpers/checkWinner";
-import { GameConfig, NewCellState, TurnsRowsState } from "../models/display";
-import CellContainer from "./CellContainer";
-import ContainerLeft from "./ContainerLeft";
+import { getWinningCombination } from "../helpers/checkWinner";
+import { GameConfig, TurnsRowsState } from "../models/display";
+
 import "./Display.css";
+import Table from "./Table";
+import Config from "./Config";
+import GameStatus from "./GameStatus";
+import TurnsHistory from "./TurnsHistory";
 
 function TicTacToeGame() {
-  /* input state */
+  const [turnsHistory, setTurnsHistory] = useState<TurnsRowsState[]>([]);
   const [config, setConfig] = useState<GameConfig>({
     boardSize: 3,
     enableTurnDisappearing: false,
@@ -15,23 +18,17 @@ function TicTacToeGame() {
     disappearingCellsInpVal: 5,
   });
 
-  /* other states */
-  const [turnsHistory, setTurnsHistory] = useState<TurnsRowsState[]>([]);
-
   const cells = useMemo(() => {
     return calcCellsByTurnsHistory(turnsHistory, config.boardSize);
   }, [turnsHistory, config.boardSize]);
-
   const activePlayer = useMemo(() => {
-    let activePlayer = turnsHistory.at(-1)?.player;
-    activePlayer != "X" ? (activePlayer = "X") : (activePlayer = "O");
-    return activePlayer;
+    const lastPlayer = turnsHistory.at(-1)?.player;
+    return lastPlayer === "X" ? "O" : "X";
   }, [turnsHistory]);
 
-  const isBoardFilled = !cells.some((row) =>
-    row.some((cell) => cell.state == null)
-  );
-  const handleTurn = (
+  const isBoardFilled =
+    turnsHistory.length === config.boardSize * config.boardSize;
+  const makeTurn = (
     cellIndex: number,
     rowIndex: number,
     player: TurnsRowsState["player"]
@@ -47,15 +44,12 @@ function TicTacToeGame() {
   };
 
   const { winner, winCombination } = useMemo(() => {
-    console.log(111);
+    const winCombination = getWinningCombination(
+      cells,
+      config.winCombinationLength
+    );
 
-    const winCombination = checkWinner(cells, config.winCombinationLength);
-
-    if (!winCombination || winCombination.length === 0) {
-      return { winner: null, winCombination: [] };
-    }
-
-    const winner = winCombination[0]?.state || null;
+    const winner = winCombination?.[0]?.state || null;
 
     return { winner, winCombination };
   }, [cells, config.winCombinationLength, turnsHistory]);
@@ -63,11 +57,11 @@ function TicTacToeGame() {
   const handleCellClick = (colIndex: number, rowIndex: number) => {
     if (winner) return;
     const isFilled = turnsHistory.find((obj) => {
-      if (obj.pos.col == colIndex && obj.pos.row == rowIndex) return true;
+      if (obj.pos.col === colIndex && obj.pos.row == rowIndex) return true;
     });
     if (isFilled) return;
 
-    handleTurn(colIndex, rowIndex, activePlayer);
+    makeTurn(colIndex, rowIndex, activePlayer);
 
     if (config.enableTurnDisappearing) {
       setTurnsHistory((prev) => prev.slice(-config.disappearingCellsInpVal));
@@ -76,33 +70,38 @@ function TicTacToeGame() {
 
   const handleResetConfig = () => {
     setTurnsHistory([]);
-    //check if clears setting
-    setConfig((prev) => ({ ...prev, boardSize: 3 }));
+    setConfig((prev) => ({
+      boardSize: 3,
+      enableTurnDisappearing: false,
+      winCombinationLength: 3,
+      disappearingCellsInpVal: 5,
+    }));
   };
+
   const handleRestart = () => {
     setTurnsHistory([]);
   };
 
   return (
     <div className="mainCont">
-      <CellContainer
+      <Table
         cells={cells}
-        config={config}
         winCombination={winCombination}
         handleCellClick={handleCellClick}
+        config={config}
       />
 
-      <ContainerLeft
-        handleResetConfig={handleResetConfig}
-        handleRestart={handleRestart}
-        winner={winner}
-        config={config}
-        setConfig={setConfig}
-        isBoardFilled={isBoardFilled}
-        turnsHistory={turnsHistory}
-        goToTurn={goToTurn}
-        setTurnsHistory={setTurnsHistory}
-      />
+      <div className="contLeft">
+        <Config
+          config={config}
+          setConfig={setConfig}
+          setTurnsHistory={setTurnsHistory}
+          handleResetConfig={handleResetConfig}
+          handleRestart={handleRestart}
+        />
+        <GameStatus winner={winner} isBoardFilled={isBoardFilled} />
+        <TurnsHistory turnsHistory={turnsHistory} goToTurn={goToTurn} />
+      </div>
     </div>
   );
 }

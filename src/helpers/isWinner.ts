@@ -1,21 +1,13 @@
-import { type } from "os";
-import { CellState } from "./../models/display";
-type NewCellState = {
-  pos: {
-    col: number;
-    row: number;
-  };
-  state: CellState;
-};
+import { CellState, NewCellState } from "./../models/display";
+
 const isWinner = (
   cells: (NewCellState | null)[],
-  wonCombinationCount: number
+  winCombinationLength: number
 ) => {
-  // let count = 0;
   let cellItem: NewCellState["state"] = null;
   let winnerCells: NewCellState[] = [];
   cells.forEach((cell) => {
-    if (winnerCells.length === wonCombinationCount) return;
+    if (winnerCells.length === winCombinationLength) return;
     if (!cell?.state) {
       winnerCells = [];
       cellItem = null;
@@ -29,7 +21,7 @@ const isWinner = (
     }
   });
 
-  if (winnerCells.length < wonCombinationCount) return null;
+  if (winnerCells.length < winCombinationLength) return null;
 
   return winnerCells;
 };

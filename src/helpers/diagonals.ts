@@ -3,7 +3,7 @@ import { CellState, NewCellState } from "./../models/display";
 
 export const getDiagonalBoard1 = (
   cells: (NewCellState | null)[][]
-): NewCellState[][] => {
+): (NewCellState | null)[][] => {
   const upgArray = cells.map((row, index) => {
     return [
       ...getNullArray(row.length - 1 - index),
@@ -13,9 +13,10 @@ export const getDiagonalBoard1 = (
   });
   return upgArray;
 };
+
 export const getDiagonalBoard2 = (
   cells: (NewCellState | null)[][]
-): NewCellState[][] => {
+): (NewCellState | null)[][] => {
   const upgArray = cells.map((row, index) => {
     return [
       ...getNullArray(index),
