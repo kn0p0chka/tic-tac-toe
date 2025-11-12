@@ -1,22 +1,25 @@
 import React from "react";
 import { GameConfig, NewCellState } from "../models/display";
 import Cell from "./Cell";
+
 type TableProps = {
   cells: NewCellState[][];
   winCombination: NewCellState[] | null;
   handleCellClick: (colIndex: number, rowIndex: number) => void;
   config: GameConfig;
 };
+
 function Table({ cells, config, winCombination, handleCellClick }: TableProps) {
+  // TODO: this function should return boolean.
+  // true if the cell is part of the winning combination, false otherwise.
   const isCellPartOfWinningCombination = (cell: NewCellState) => {
     return winCombination?.some(
-      (winningCell) =>
-        winningCell.pos.col === cell.pos.col &&
-        winningCell.pos.row === cell.pos.row
+      (winningCell) => winningCell.pos.col === cell.pos.col && winningCell.pos.row === cell.pos.row
     )
       ? winCombination
       : null;
   };
+
   return (
     <div className="cont">
       <div className="cellsContainer">

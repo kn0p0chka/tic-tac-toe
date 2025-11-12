@@ -2,10 +2,7 @@ import { getDiagonalBoard1, getDiagonalBoard2 } from "./diagonals";
 import isWinner from "./isWinner";
 import { NewCellState } from "./../models/display";
 
-export const getWinningCombination = (
-  cells: NewCellState[][],
-  boardSize: number
-) => {
+export const getWinningCombination = (cells: NewCellState[][], boardSize: number) => {
   for (let rowIndex = 0; rowIndex < cells[0].length; rowIndex++) {
     const row = cells[rowIndex];
     const winningRow = isWinner(row, boardSize);

@@ -1,10 +1,6 @@
+// TODO remove this file
 import React, { useEffect, useState } from "react";
-import {
-  CellState,
-  GameConfig,
-  NewCellState,
-  TurnsRowsState,
-} from "../models/display";
+import { CellState, GameConfig, NewCellState, TurnsRowsState } from "../models/display";
 type ContainerLeftProps = {
   winner: CellState;
   isBoardFilled: boolean;
@@ -92,10 +88,7 @@ function ContainerLeft({
       isError = true;
     }
 
-    if (
-      formData.disappearingCellsInpVal >=
-      formData.boardSize * formData.boardSize - 1
-    ) {
+    if (formData.disappearingCellsInpVal >= formData.boardSize * formData.boardSize - 1) {
       setError((prev) => ({
         ...prev,
         disappearingCellsInpVal: `pls type number less than ${
@@ -238,9 +231,7 @@ function ContainerLeft({
         </button>
       </div>
       {winner && <h3 className="winner">the winner is: {winner} !!</h3>}
-      {!winner && isBoardFilled && (
-        <h3 className="winner">the winner is love</h3>
-      )}
+      {!winner && isBoardFilled && <h3 className="winner">the winner is love</h3>}
 
       <div className="turnsBox">
         {turnsHistory.map((turn, index) => {

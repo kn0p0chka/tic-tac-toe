@@ -1,9 +1,6 @@
 import { CellState, NewCellState } from "./../models/display";
 
-const isWinner = (
-  cells: (NewCellState | null)[],
-  winCombinationLength: number
-) => {
+const isWinner = (cells: (NewCellState | null)[], winCombinationLength: number) => {
   let cellItem: NewCellState["state"] = null;
   let winnerCells: NewCellState[] = [];
   cells.forEach((cell) => {

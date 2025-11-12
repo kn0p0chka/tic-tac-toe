@@ -58,8 +58,7 @@ function Config({
         {errors.boardSize && (
           <p className="red">
             {errors.boardSize?.type === "min" && "pls type number more than 3"}
-            {errors.boardSize?.type === "max" &&
-              `pls type number less than ${watchedBoardSize}`}
+            {errors.boardSize?.type === "max" && `pls type number less than ${watchedBoardSize}`}
           </p>
         )}
       </label>
@@ -76,8 +75,7 @@ function Config({
         />
         {errors.winCombinationLength && (
           <p className="red">
-            {errors.winCombinationLength?.type === "min" &&
-              "pls type number more than 3"}
+            {errors.winCombinationLength?.type === "min" && "pls type number more than 3"}
             {errors.winCombinationLength?.type === "max" &&
               `pls type number less than ${watchedBoardSize}`}
           </p>
@@ -103,9 +101,7 @@ function Config({
         {errors.disappearingCellsInpVal && (
           <p className="red">
             {errors.disappearingCellsInpVal?.type === "min" &&
-              `pls type number more than ${
-                Number(watchedWinCombinationLength) * 2 - 1
-              }`}
+              `pls type number more than ${Number(watchedWinCombinationLength) * 2 - 1}`}
             {errors.disappearingCellsInpVal?.type === "max" &&
               `"pls type number less than ${
                 Number(watchedBoardSize) * Number(watchedBoardSize) - 1
@@ -128,6 +124,7 @@ function Config({
         onClick={() => {
           console.log("hi");
           handleResetConfig();
+          // TODO: use the default config from the constants file. (check comment in TicTacToeGame.tsx)
           const defaultValues = {
             boardSize: 3,
             enableTurnDisappearing: false,
