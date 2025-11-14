@@ -1,13 +1,3 @@
-// TODO: PLEASE REMOVE ALL UNNEEDED COMMENTS
-
-// TODO: Lets split this component into smaller components.
-// 1) Form component with all buttons (Config OR Settings) done
-// 2) component with statuses (GameStatus)  done
-
-// 3) component with turns history (TurnsHistory)
-// All these components will be placed in the TicTacToeGame container
-// so there will no longer be a component TurnsHistory.
-
 import React from "react";
 import { TurnsRowsState } from "../models/display";
 

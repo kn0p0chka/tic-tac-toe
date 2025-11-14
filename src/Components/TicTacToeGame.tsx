@@ -9,6 +9,8 @@ import TurnsHistory from "./TurnsHistory";
 
 function TicTacToeGame() {
   const [turnsHistory, setTurnsHistory] = useState<TurnsRowsState[]>([]);
+  // TODO: create a folder constants. Inside it create a file defaultConfig.ts with the default config.
+  // move the default config bellow to this file.
   const [config, setConfig] = useState<GameConfig>({
     boardSize: 3,
     enableTurnDisappearing: false,
@@ -19,22 +21,16 @@ function TicTacToeGame() {
   const cells = useMemo(() => {
     return calcCellsByTurnsHistory(turnsHistory, config.boardSize);
   }, [turnsHistory, config.boardSize]);
+
   const activePlayer = useMemo(() => {
     const lastPlayer = turnsHistory.at(-1)?.player;
     return lastPlayer === "X" ? "O" : "X";
   }, [turnsHistory]);
 
-  const isBoardFilled =
-    turnsHistory.length === config.boardSize * config.boardSize;
-  const makeTurn = (
-    cellIndex: number,
-    rowIndex: number,
-    player: TurnsRowsState["player"]
-  ) => {
-    setTurnsHistory((prev) => [
-      ...prev,
-      { pos: { row: rowIndex, col: cellIndex }, player },
-    ]);
+  const isBoardFilled = turnsHistory.length === config.boardSize * config.boardSize;
+
+  const makeTurn = (cellIndex: number, rowIndex: number, player: TurnsRowsState["player"]) => {
+    setTurnsHistory((prev) => [...prev, { pos: { row: rowIndex, col: cellIndex }, player }]);
   };
 
   const goToTurn = (turnIndex: number) => {
@@ -42,11 +38,7 @@ function TicTacToeGame() {
   };
 
   const { winner, winCombination } = useMemo(() => {
-    const winCombination = getWinningCombination(
-      cells,
-      config.winCombinationLength
-    );
-
+    const winCombination = getWinningCombination(cells, config.winCombinationLength);
     const winner = winCombination?.[0]?.state || null;
 
     return { winner, winCombination };
@@ -68,6 +60,7 @@ function TicTacToeGame() {
 
   const handleResetConfig = () => {
     setTurnsHistory([]);
+    // TODO: use the default config from the constants file.
     setConfig((prev) => ({
       boardSize: 3,
       enableTurnDisappearing: false,

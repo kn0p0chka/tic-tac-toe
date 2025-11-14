@@ -1,5 +1,5 @@
 import "./App.css";
-import Display3 from "./components/TicTacToeGame";
+import Display3 from "./Components/TicTacToeGame";
 
 function App() {
   return (

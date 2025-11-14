@@ -1,3 +1,4 @@
+// TODO: REMOVE file
 type CellState = "O" | "X" | null;
 
 const checkWinner = (cells: CellState[][]): boolean => {
