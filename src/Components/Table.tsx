@@ -10,14 +10,12 @@ type TableProps = {
 };
 
 function Table({ cells, config, winCombination, handleCellClick }: TableProps) {
-  // TODO: this function should return boolean.
-  // true if the cell is part of the winning combination, false otherwise.
   const isCellPartOfWinningCombination = (cell: NewCellState) => {
     return winCombination?.some(
       (winningCell) => winningCell.pos.col === cell.pos.col && winningCell.pos.row === cell.pos.row
     )
-      ? winCombination
-      : null;
+      ? true
+      : false;
   };
 
   return (

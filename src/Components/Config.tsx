@@ -1,5 +1,6 @@
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import defaultConfig from "../constants/defaultConfig";
 import { GameConfig, TurnsRowsState } from "../models/display";
 
 type ConfigProps = {
@@ -124,13 +125,7 @@ function Config({
         onClick={() => {
           console.log("hi");
           handleResetConfig();
-          // TODO: use the default config from the constants file. (check comment in TicTacToeGame.tsx)
-          const defaultValues = {
-            boardSize: 3,
-            enableTurnDisappearing: false,
-            winCombinationLength: 3,
-            disappearingCellsInpVal: 5,
-          };
+          const defaultValues = defaultConfig;
           reset(defaultValues);
         }}
       >

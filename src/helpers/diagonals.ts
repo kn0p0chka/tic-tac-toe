@@ -2,17 +2,15 @@ import getNullArray from "./getNullArray";
 import { CellState, NewCellState } from "./../models/display";
 
 export const getDiagonalBoard1 = (cells: (NewCellState | null)[][]): (NewCellState | null)[][] => {
-  // TODO: rename to filledArray
-  const upgArray = cells.map((row, index) => {
+  const filledArray = cells.map((row, index) => {
     return [...getNullArray(row.length - 1 - index), ...row, ...getNullArray(index)];
   });
-  return upgArray;
+  return filledArray;
 };
 
 export const getDiagonalBoard2 = (cells: (NewCellState | null)[][]): (NewCellState | null)[][] => {
-  // TODO: rename to filledArray
-  const upgArray = cells.map((row, index) => {
+  const filledArray = cells.map((row, index) => {
     return [...getNullArray(index), ...row, ...getNullArray(row.length - 1 - index)];
   });
-  return upgArray;
+  return filledArray;
 };

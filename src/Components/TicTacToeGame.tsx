@@ -6,17 +6,11 @@ import Table from "./Table";
 import Config from "./Config";
 import GameStatus from "./GameStatus";
 import TurnsHistory from "./TurnsHistory";
+import defaultConfig from "../constants/defaultConfig";
 
 function TicTacToeGame() {
   const [turnsHistory, setTurnsHistory] = useState<TurnsRowsState[]>([]);
-  // TODO: create a folder constants. Inside it create a file defaultConfig.ts with the default config.
-  // move the default config bellow to this file.
-  const [config, setConfig] = useState<GameConfig>({
-    boardSize: 3,
-    enableTurnDisappearing: false,
-    winCombinationLength: 3,
-    disappearingCellsInpVal: 5,
-  });
+  const [config, setConfig] = useState<GameConfig>(defaultConfig);
 
   const cells = useMemo(() => {
     return calcCellsByTurnsHistory(turnsHistory, config.boardSize);
@@ -60,13 +54,7 @@ function TicTacToeGame() {
 
   const handleResetConfig = () => {
     setTurnsHistory([]);
-    // TODO: use the default config from the constants file.
-    setConfig((prev) => ({
-      boardSize: 3,
-      enableTurnDisappearing: false,
-      winCombinationLength: 3,
-      disappearingCellsInpVal: 5,
-    }));
+    setConfig((prev) => defaultConfig);
   };
 
   const handleRestart = () => {
